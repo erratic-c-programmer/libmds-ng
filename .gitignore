@@ -1,0 +1,13 @@
+libmds.so
+libmds.a
+*/*.o
+
+vgcore*
+tags
+
+tests/hello
+tests/jumble
+tests/llist
+tests/llist_huge
+tests/vector
+tests/vector_huge
