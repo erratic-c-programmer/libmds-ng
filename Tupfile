@@ -1,0 +1,38 @@
+WARNINGS += -Wpedantic
+WARNINGS += -Wall
+WARNINGS += -Wextra
+WARNINGS += -Waggregate-return
+WARNINGS += -Wbad-function-cast
+WARNINGS += -Wcast-align
+WARNINGS += -Wcast-qual
+WARNINGS += -Wdeclaration-after-statement
+WARNINGS += -Wfloat-equal
+WARNINGS += -Wformat=2
+WARNINGS += -Wmissing-declarations
+WARNINGS += -Wmissing-include-dirs
+WARNINGS += -Wmissing-prototypes
+WARNINGS += -Wnested-externs
+WARNINGS += -Wpointer-arith
+WARNINGS += -Wredundant-decls
+WARNINGS += -Wsequence-point
+WARNINGS += -Wshadow
+WARNINGS += -Wstrict-prototypes
+WARNINGS += -Wswitch
+WARNINGS += -Wundef
+WARNINGS += -Wunreachable-code
+WARNINGS += -Wunused-parameter
+WARNINGS += -Wwrite-strings
+WARNINGS += -Werror
+
+DEBUG = -g
+OPTIM = -O3 -march=native -mtune=native
+CFLAGS = $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC
+CC = gcc
+OCC = $(CC) -c
+AR = ar
+
+LOCS = vector/*.o
+
+: foreach vector/*.c |> $(OCC) $(CFLAGS) -o %o %f |> vector/%B.o
+: $(LOCS) |> $(AR) rcs %o %f |> libmds.a
+: tests/vector.c | libmds.a |> $(CC) $(CFLAGS) -o %o %f -L. -lmds |> tests/%B
