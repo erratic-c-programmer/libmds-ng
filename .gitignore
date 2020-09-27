@@ -13,3 +13,4 @@ tests/vector
 tests/vector_huge
 
 .tup/
+docs/html
