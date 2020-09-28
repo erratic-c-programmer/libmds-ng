@@ -1,6 +1,7 @@
 libmds.so
 libmds.a
 */*.o
+*.o
 
 vgcore*
 tags
