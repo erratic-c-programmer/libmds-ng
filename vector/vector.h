@@ -96,6 +96,20 @@ void vector_pushfront(struct vector *in, const void *val);
 void vector_popback(struct vector *in);
 
 /*
+ * Function: vector_delete
+ * Deletes a value at a specified index. The value _at_ the
+ * index will be deleted.
+ *
+ * Parameters:
+ *	in - vector to operate on
+ *	idx - index to insert at
+ *
+ * Note:
+ * idx must be less than len and greater or equal to 0.
+ */
+void vector_delete(struct vector *in, const size_t idx);
+
+/*
  * Function: vector_popfront
  * Pops a value from the front of the vector.
  *

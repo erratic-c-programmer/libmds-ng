@@ -44,14 +44,21 @@ void vector_pushback(struct vector *in, const void *val)
 	in->len += 1;
 }
 
-void vector_pushfront(struct vector *in, const void *val)
+void vector_insert(struct vector *in, const size_t idx, const void *val)
 {
 	realloc_if_needed(in, 1);
-	for (int i = in->len; i > 0; i--)
+	for (size_t i = in->len; i > idx; i--)
 		memcpy(in->data[i], in->data[i - 1], in->dsize);
 
-	memcpy(in->data[0], val, in->dsize);
+	memcpy(in->data[idx], val, in->dsize);
 	in->len += 1;
+}
+
+
+/* DELETE */
+void vector_pushfront(struct vector *in, const void *val)
+{
+	vector_insert(in, 0, val);
 }
 
 void vector_popback(struct vector *in)
@@ -59,9 +66,14 @@ void vector_popback(struct vector *in)
 	in->len -= 1;
 }
 
-void vector_popfront(struct vector *in)
+void vector_delete(struct vector *in, const size_t idx)
 {
-	for (size_t i = 1; i < in->len; i--)
+	for (size_t i = idx + 1; i < in->len; i++)
 		memcpy(in->data[i - 1], in->data[i], in->dsize);
 	in->len -= 1;
+}
+
+void vector_popfront(struct vector *in)
+{
+	vector_delete(in, 0);
 }
