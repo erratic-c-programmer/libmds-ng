@@ -6,9 +6,6 @@
 
 #define VEC_INIT_SZ 4
 #define VEC_INCR_OP(osz) (osz*2)
-#define NULLCHK(in) if (in == NULL) \
-							return NULLPTR;
-
 
 /*
  * Struct: vector
@@ -16,7 +13,14 @@
  * Supports pushback, pushfront, random insertion,
  * and the equivalant for popping. This struct should *only* be operated on by
  * the vector_* functions! Do not attempt to manually modify any of the members
- * manually; doing so will result in disastrous consequences.
+ * manually; doing so will result in disastrous consequences. Except for the data
+ * array; you can modify it like this:
+ *
+ * === Code
+ * memcpy(in->data[idx], val, in->dsize);
+ * ===
+ *
+ * But it is encouraged to use the function <vector_modify> instead
  */
 struct vector {
 	/*
@@ -47,18 +51,18 @@ struct vector {
  * Initialises a vector
  *
  * Parameters:
- *	in - vector to operate on
- *	dsize - size of data to be pushed into data
+ *  in - vector to operate on
+ *  dsize - size of data to be pushed into data
  *
  * Returns:
- *	<status>
+ *  <status>
  *
  * Note:
- *	Remember to call <vector_deinit> later, or there will be
- *	memory leaks!
+ *  Remember to call <vector_deinit> later, or there will be
+ *  memory leaks!
  *
  * See also:
- *	<vector_deinit>
+ *  <vector_deinit>
  */
 enum status vector_init(struct vector *in, const size_t dsize);
 
@@ -66,14 +70,13 @@ enum status vector_init(struct vector *in, const size_t dsize);
  * De-initialises a vector
  *
  * Parameters:
- *	in - vector to operate on
+ *  in - vector to operate on
  *
  * Returns:
- *	<status>
+ *  <status>
  *
  * Note:
- *	If the vector has not yet been initialised,
- *	*the program will crash, badly.*
+ *  The list must have been initialised!
  */
 enum status vector_deinit(struct vector *in);
 
@@ -82,8 +85,8 @@ enum status vector_deinit(struct vector *in);
  * Pushes a value to the back of the vector.
  *
  * Parameters:
- *	in - vector to operate on
- *	val - pointer to value to push
+ *  in - vector to operate on
+ *  val - pointer to value to push
  */
 enum status vector_pushback(struct vector *in, const void *val);
 
@@ -93,12 +96,12 @@ enum status vector_pushback(struct vector *in, const void *val);
  * placed _at_ the index
  *
  * Parameters:
- *	in - vector to operate on
- *	idx - index to insert at
- *	val - pointer to value to insert
+ *  in - vector to operate on
+ *  idx - index to insert at
+ *  val - pointer to value to insert
  *
  * Returns:
- *	<status>
+ *  <status>
  *
  * Note:
  * idx must not be greater than len.
@@ -111,11 +114,11 @@ enum status vector_insert(struct vector *in, const size_t idx,
  * Pushes a value to the front of the vector.
  *
  * Returns:
- *	<status>
+ *  <status>
  *
  * Parameters:
- *	in - vector to operate on
- *	val - pointer to value to push
+ *  in - vector to operate on
+ *  val - pointer to value to push
  */
 enum status vector_pushfront(struct vector *in, const void *val);
 
@@ -124,10 +127,10 @@ enum status vector_pushfront(struct vector *in, const void *val);
  * Pops a value from the back of the vector.
  *
  * Parameters:
- *	in - vector to operate on
+ *  in - vector to operate on
  *
  * Returns:
- *	<status>
+ *  <status>
  */
 enum status vector_popback(struct vector *in);
 
@@ -137,11 +140,11 @@ enum status vector_popback(struct vector *in);
  * index will be deleted.
  *
  * Parameters:
- *	in - vector to operate on
- *	idx - index to insert at
+ *  in - vector to operate on
+ *  idx - index to delete
  *
  * Returns:
- *	<status>
+ *  <status>
  *
  * Note:
  * idx must be strictly smaller than len.
@@ -153,9 +156,24 @@ enum status vector_delete(struct vector *in, const size_t idx);
  * Pops a value from the front of the vector.
  *
  * Parameters:
- *	in - vector to operate on
+ *  in - vector to operate on
  *
  * Returns:
- *	<status>
+ *  <status>
  */
 enum status vector_popfront(struct vector *in);
+
+/*
+ * Function: vector_modify
+ * Modify the value in the vector at idx
+ *
+ * Parameters:
+ *  in - vector to operate on
+ *  idx - index to modify
+ *  val - new value
+ *
+ * Returns:
+ *  <status>
+ */
+enum status vector_modify(struct vector *in, const size_t idx,
+		const void *val);

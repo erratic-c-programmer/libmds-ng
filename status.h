@@ -16,3 +16,5 @@ enum status {
 
 #define RETIFNOK(val) if (val != OK) \
 								 return val;
+#define NULLCHK(in) if (in == NULL) \
+							return NULLPTR;

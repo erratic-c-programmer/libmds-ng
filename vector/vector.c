@@ -148,3 +148,14 @@ enum status vector_popfront(struct vector *in)
 
 	return OK;
 }
+
+enum status vector_modify(struct vector *in, const size_t idx,
+		const void *val)
+{
+	NULLCHK(in);
+	NULLCHK(in->data);
+
+	memcpy(in->data[idx], val, in->dsize);
+
+	return OK;
+}
