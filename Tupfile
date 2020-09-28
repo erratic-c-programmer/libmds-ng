@@ -24,15 +24,15 @@ WARNINGS += -Wunused-parameter
 WARNINGS += -Wwrite-strings
 WARNINGS += -Werror
 
-DEBUG = -g
+DEBUG = -g -DDEBUG_OOM
 OPTIM = -O3 -march=native -mtune=native
 CFLAGS = $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC
 CC = gcc
 OCC = $(CC) -c
 AR = ar
 
-LOCS = vector/*.o
+LOCS = *.o
 
-: foreach vector/*.c |> $(OCC) $(CFLAGS) -o %o %f |> vector/%B.o
+: foreach vector/*.c *.c |> $(OCC) $(CFLAGS) -o %o %f |> %B.o
 : $(LOCS) |> $(AR) rcs %o %f |> libmds.a
 : tests/vector.c | libmds.a |> $(CC) $(CFLAGS) -o %o %f -L. -lmds |> tests/%B

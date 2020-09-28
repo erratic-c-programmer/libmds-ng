@@ -2,8 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../status.h"
+
 #define VEC_INIT_SZ 4
 #define VEC_INCR_OP(osz) (osz*2)
+#define NULLCHK(in) if (in == NULL) \
+							return NULLPTR;
+
 
 /*
  * Struct: vector
@@ -45,6 +50,9 @@ struct vector {
  *	in - vector to operate on
  *	dsize - size of data to be pushed into data
  *
+ * Returns:
+ *	<status>
+ *
  * Note:
  *	Remember to call <vector_deinit> later, or there will be
  *	memory leaks!
@@ -52,7 +60,7 @@ struct vector {
  * See also:
  *	<vector_deinit>
  */
-void vector_init(struct vector *in, const size_t dsize);
+enum status vector_init(struct vector *in, const size_t dsize);
 
 /* Function: vector_deinit
  * De-initialises a vector
@@ -60,11 +68,14 @@ void vector_init(struct vector *in, const size_t dsize);
  * Parameters:
  *	in - vector to operate on
  *
+ * Returns:
+ *	<status>
+ *
  * Note:
  *	If the vector has not yet been initialised,
  *	*the program will crash, badly.*
  */
-void vector_deinit(struct vector *in);
+enum status vector_deinit(struct vector *in);
 
 /*
  * Function: vector_pushback
@@ -72,19 +83,41 @@ void vector_deinit(struct vector *in);
  *
  * Parameters:
  *	in - vector to operate on
- *	val - value to push
+ *	val - pointer to value to push
  */
-void vector_pushback(struct vector *in, const void *val);
+enum status vector_pushback(struct vector *in, const void *val);
+
+/*
+ * Function: vector_insert
+ * Inserts a value at a specified index. The value will be
+ * placed _at_ the index
+ *
+ * Parameters:
+ *	in - vector to operate on
+ *	idx - index to insert at
+ *	val - pointer to value to insert
+ *
+ * Returns:
+ *	<status>
+ *
+ * Note:
+ * idx must not be more than len.
+ */
+enum status vector_insert(struct vector *in, const size_t idx,
+						  const void *val);
 
 /*
  * Function: vector_pushfront
  * Pushes a value to the front of the vector.
  *
+ * Returns:
+ *	<status>
+ *
  * Parameters:
  *	in - vector to operate on
- *	val - value to push
+ *	val - pointer to value to push
  */
-void vector_pushfront(struct vector *in, const void *val);
+enum status vector_pushfront(struct vector *in, const void *val);
 
 /*
  * Function: vector_popback
@@ -92,8 +125,11 @@ void vector_pushfront(struct vector *in, const void *val);
  *
  * Parameters:
  *	in - vector to operate on
+ *
+ * Returns:
+ *	<status>
  */
-void vector_popback(struct vector *in);
+enum status vector_popback(struct vector *in);
 
 /*
  * Function: vector_delete
@@ -104,10 +140,13 @@ void vector_popback(struct vector *in);
  *	in - vector to operate on
  *	idx - index to insert at
  *
+ * Returns:
+ *	<status>
+ *
  * Note:
  * idx must be less than len and greater or equal to 0.
  */
-void vector_delete(struct vector *in, const size_t idx);
+enum status vector_delete(struct vector *in, const size_t idx);
 
 /*
  * Function: vector_popfront
@@ -115,5 +154,8 @@ void vector_delete(struct vector *in, const size_t idx);
  *
  * Parameters:
  *	in - vector to operate on
+ *
+ * Returns:
+ *	<status>
  */
-void vector_popfront(struct vector *in);
+enum status vector_popfront(struct vector *in);
