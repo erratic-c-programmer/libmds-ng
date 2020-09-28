@@ -36,7 +36,7 @@ LIBOBJS = vector/vector.o
 
 .PHONY : all static dynamic test
 
-all : static dynamic test
+all : static test
 
 static : libmds.a
 
