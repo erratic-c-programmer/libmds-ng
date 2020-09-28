@@ -101,7 +101,7 @@ enum status vector_pushback(struct vector *in, const void *val);
  *	<status>
  *
  * Note:
- * idx must not be more than len.
+ * idx must not be greater than len.
  */
 enum status vector_insert(struct vector *in, const size_t idx,
 						  const void *val);
@@ -144,7 +144,7 @@ enum status vector_popback(struct vector *in);
  *	<status>
  *
  * Note:
- * idx must be less than len and greater or equal to 0.
+ * idx must be strictly smaller than len.
  */
 enum status vector_delete(struct vector *in, const size_t idx);
 

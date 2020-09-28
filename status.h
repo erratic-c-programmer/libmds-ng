@@ -13,3 +13,6 @@ enum status {
 	OOB,
 	NULLPTR,
 };
+
+#define RETIFNOK(val) if (val != OK) \
+								 return val;

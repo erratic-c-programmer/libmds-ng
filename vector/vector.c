@@ -1,7 +1,8 @@
 #include "vector.h"
 
 /* UTILITIY FUNCTIONS */
-static void realloc_if_needed(struct vector *in, const size_t needed)
+static enum status realloc_if_needed(struct vector *in,
+									 const size_t needed)
 {
 	/*
 	 * in and in->data should have been checked before calling
@@ -15,6 +16,10 @@ static void realloc_if_needed(struct vector *in, const size_t needed)
 		newsz = VEC_INCR_OP(in->cap);
 
 		t = realloc(in->data, newsz * sizeof(void *));
+
+		if (t == NULL)
+			return ALLOC_FAIL;
+
 		in->data = t;
 
 		for (size_t i = in->cap; i < newsz; i++)
@@ -22,6 +27,8 @@ static void realloc_if_needed(struct vector *in, const size_t needed)
 
 		in->cap = newsz;
 	}
+
+	return OK;
 }
 
 
@@ -71,7 +78,7 @@ enum status vector_pushback(struct vector *in, const void *val)
 	NULLCHK(in);
 	NULLCHK(in->data);
 
-	realloc_if_needed(in, 1);
+	RETIFNOK(realloc_if_needed(in, 1));
 	memcpy(in->data[in->len], val, in->dsize);
 	in->len += 1;
 
@@ -83,8 +90,10 @@ enum status vector_insert(struct vector *in, const size_t idx,
 {
 	NULLCHK(in);
 	NULLCHK(in->data);
+	if (idx > in->len)
+		return OOB;
 
-	realloc_if_needed(in, 1);
+	RETIFNOK(realloc_if_needed(in, 1));
 	for (size_t i = in->len; i > idx; i--)
 		memcpy(in->data[i], in->data[i - 1], in->dsize);
 
@@ -120,6 +129,8 @@ enum status vector_delete(struct vector *in, const size_t idx)
 {
 	NULLCHK(in);
 	NULLCHK(in->data);
+	if (idx >= in->len)
+		return OOB;
 
 	for (size_t i = idx + 1; i < in->len; i++)
 		memcpy(in->data[i - 1], in->data[i], in->dsize);
