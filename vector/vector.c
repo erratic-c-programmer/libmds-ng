@@ -77,6 +77,7 @@ enum status vector_pushback(struct vector *in, const void *val)
 {
 	NULLCHK(in);
 	NULLCHK(in->data);
+	NULLCHK(val);
 
 	RETIFNOK(realloc_if_needed(in, 1));
 	memcpy(in->data[in->len], val, in->dsize);
@@ -90,6 +91,7 @@ enum status vector_insert(struct vector *in, const size_t idx,
 {
 	NULLCHK(in);
 	NULLCHK(in->data);
+	NULLCHK(val);
 	if (idx > in->len)
 		return OOB;
 
@@ -109,6 +111,7 @@ enum status vector_pushfront(struct vector *in, const void *val)
 {
 	NULLCHK(in);
 	NULLCHK(in->data);
+	NULLCHK(val);
 
 	vector_insert(in, 0, val);
 
@@ -154,6 +157,7 @@ enum status vector_modify(struct vector *in, const size_t idx,
 {
 	NULLCHK(in);
 	NULLCHK(in->data);
+	NULLCHK(val);
 
 	memcpy(in->data[idx], val, in->dsize);
 
