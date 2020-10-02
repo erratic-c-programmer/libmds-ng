@@ -153,17 +153,17 @@ enum status llist_addnode(struct llist *in, struct llist_node *nod,
 enum status llist_pushback(struct llist *in, const void *val);
 
 /*
- * Function: vector_pushfront
- * Pushes a value to the front of the vector.
+ * Function: llist_pushfront
+ * Pushes a value to the front of the list.
  *
  * Returns:
  *	<status>
  *
  * Parameters:
- *	in - vector to operate on
+ *	in - list to operate on
  *	val - pointer to value to push
  */
-enum status vector_pushfront(struct vector *in, const void *val);
+enum status llist_pushfront(struct llist *in, const void *val);
 
 /*
  * Function: vector_popback
