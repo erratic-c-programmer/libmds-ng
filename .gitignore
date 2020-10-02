@@ -1,6 +1,5 @@
 libmds.so
 libmds.a
-*/*.o
 *.o
 
 vgcore*
@@ -13,6 +12,5 @@ tests/llist_huge
 tests/vector
 tests/vector_huge
 
-.tup/
 docs/html
 docs/Working\ Data
