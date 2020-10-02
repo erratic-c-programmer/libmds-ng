@@ -9,10 +9,14 @@
  * traverse a linked list and perform operations on it
  *
  * Parameters:
- *  headptr - head of list to be traversed
+ *  headptr - _COPY OF_ head of list to be traversed
  *  actions - actions to perform on each traversal.
  *	          There may be multiple actions; in that case
  *	          separate them with a semicolon
+ *
+ * Warning:
+ *  Directly passing the head of the linked list will result in
+ *  corruption!
  */
 #define TRAVERSE_LLIST(headptr, actions) \
 	while (headptr != NULL) { \
@@ -122,9 +126,6 @@ enum status llist_init(struct llist *in, const size_t dsize);
  *
  * Returns:
  *	<status>
- *
- * Note:
- *	The list must have been initialised!
  */
 enum status llist_deinit(struct llist *in);
 
