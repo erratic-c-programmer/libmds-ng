@@ -43,37 +43,6 @@ enum status llist_deinit(struct llist *in)
 
 
 /* INSERT */
-enum status llist_addnode(struct llist *in, struct llist_node *nod,
-		const void *val)
-{
-	struct llist_node *new;
-	NULLCHK(in);
-	NULLCHK(nod);
-	NULLCHK(val);
-
-	new = malloc(sizeof(struct llist_node *));
-
-	if (new == NULL)
-		return ALLOC_FAIL;
-
-	new->data = malloc(in->dsize);
-
-	if (new->data == NULL)
-		return ALLOC_FAIL;
-
-	memcpy(new->data, val, in->dsize);
-
-	new->prev = nod->prev;
-	new->next = nod;
-
-	nod->prev = new;
-	nod->prev->next = new;
-
-	in->len += 1;
-
-	return OK;
-}
-
 enum status llist_pushback(struct llist *in, const void *val)
 {
 	struct llist_node *new;
@@ -113,7 +82,6 @@ enum status llist_pushfront(struct llist *in, const void *val)
 	NULLCHK(in);
 	NULLCHK(val);
 
-
 	new = malloc(sizeof(struct llist_node *));
 
 	if (new == NULL)
@@ -137,5 +105,52 @@ enum status llist_pushfront(struct llist *in, const void *val)
 	in->head = new;
 	in->len += 1;
 
+	return OK;
+}
+
+enum status llist_popback(struct llist *in)
+{
+	NULLCHK(in);
+	
+	if (in->len == 0)
+		return OOB;
+
+	free(in->tail->data);
+	in->tail->prev->next = NULL;
+	free(in->tail);
+
+	in->len -= 1;
+	
+	return OK;
+}
+
+enum status llist_delnode(struct llist *in, struct llist_node *nod)
+{
+	NULLCHK(in);
+	NULLCHK(nod);
+
+	free(nod->data);
+	nod->prev->next = nod->next;
+	nod->next->prev = nod->prev;
+	free(nod);
+
+	in->len -= 1;
+
+	return OK;
+}
+
+enum status llist_popfront(struct llist *in)
+{
+	NULLCHK(in);
+	
+	if (in->len == 0)
+		return OOB;
+
+	free(in->head->data);
+	in->head->next->prev = NULL;
+	free(in->head);
+
+	in->len -= 1;
+	
 	return OK;
 }

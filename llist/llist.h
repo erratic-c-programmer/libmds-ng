@@ -166,40 +166,36 @@ enum status llist_pushback(struct llist *in, const void *val);
 enum status llist_pushfront(struct llist *in, const void *val);
 
 /*
- * Function: vector_popback
- * Pops a value from the back of the vector.
+ * Function: llist_popback
+ * Pops a value from the back of the list.
  *
  * Parameters:
- *	in - vector to operate on
+ *	in - list to operate on
  *
  * Returns:
  *	<status>
  */
-enum status vector_popback(struct vector *in);
+enum status llist_popback(struct llist *in);
 
 /*
- * Function: vector_delete
- * Deletes a value at a specified index. The value _at_ the
- * index will be deleted.
+ * Function: llist_delnode
+ * Deletes a node from a linked list
  *
  * Parameters:
- *	in - vector to operate on
- *	idx - index to insert at
+ *	in - list to operate on
+ *	nod - pointer to node to delete
  *
  * Returns:
  *	<status>
- *
- * Note:
- * idx must be strictly smaller than len.
  */
-enum status vector_delete(struct vector *in, const size_t idx);
+enum status llist_delnode(struct llist *in, struct llist_node *nod);
 
 /*
- * Function: vector_popfront
- * Pops a value from the front of the vector.
+ * Function: llist_popfront
+ * Pops a value from the front of the list.
  *
  * Parameters:
- *	in - vector to operate on
+ *	in - list to operate on
  *
  * Returns:
  *	<status>
