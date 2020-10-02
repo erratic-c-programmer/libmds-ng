@@ -99,6 +99,11 @@ enum status llist_pushback(struct llist *in, const void *val)
 	else
 		in->tail->next = new;
 
+	in->tail = new;
+	in->len += 1;
+
+	return OK;
+}
 	in->len += 1;
 
 	return OK;
