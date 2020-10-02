@@ -111,7 +111,7 @@ enum status llist_pushfront(struct llist *in, const void *val)
 enum status llist_popback(struct llist *in)
 {
 	NULLCHK(in);
-	
+
 	if (in->len == 0)
 		return OOB;
 
@@ -120,7 +120,7 @@ enum status llist_popback(struct llist *in)
 	free(in->tail);
 
 	in->len -= 1;
-	
+
 	return OK;
 }
 
@@ -142,7 +142,7 @@ enum status llist_delnode(struct llist *in, struct llist_node *nod)
 enum status llist_popfront(struct llist *in)
 {
 	NULLCHK(in);
-	
+
 	if (in->len == 0)
 		return OOB;
 
@@ -151,6 +151,6 @@ enum status llist_popfront(struct llist *in)
 	free(in->head);
 
 	in->len -= 1;
-	
+
 	return OK;
 }
