@@ -200,4 +200,4 @@ enum status llist_delnode(struct llist *in, struct llist_node *nod);
  * Returns:
  *	<status>
  */
-enum status vector_popfront(struct vector *in);
+enum status llist_popfront(struct llist *in);
