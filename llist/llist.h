@@ -80,14 +80,6 @@ struct llist {
 	 * Pointer to the tail of the list
 	 */
 	struct llist_node *tail;
-
-	/*
-	 * Property: end
-	 * Pointer to a virtual node right after the tail.
-	 * Writeing to this is undefined behaviour.
-	 */
-
-	struct lllist_node *end;
 };
 
 /* Function: llist_getnode
@@ -148,23 +140,17 @@ enum status llist_addnode(struct llist *in, struct llist_node *nod,
 						  const void *val);
 
 /*
- * Function: vector_insert
- * Inserts a value at a specified index. The value will be
- * placed _at_ the index
- *
- * Parameters:
- *	in - vector to operate on
- *	idx - index to insert at
- *	val - pointer to value to insert
+ * Function: llist_pushback
+ * Pushes a value to the back of the list.
  *
  * Returns:
  *	<status>
  *
- * Note:
- * idx must not be greater than len.
+ * Parameters:
+ *	in - list to operate on
+ *	val - pointer to value to push
  */
-enum status vector_insert(struct vector *in, const size_t idx,
-						  const void *val);
+enum status llist_pushback(struct llist *in, const void *val);
 
 /*
  * Function: vector_pushfront
