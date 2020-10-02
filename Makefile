@@ -26,13 +26,14 @@ WARNINGS += -Werror
 
 DEBUG = -g
 OPTIM = -O3 -march=native -mtune=native
-CFLAGS= $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC -o $@
-CC=gcc
-OCC=$(CC) -c
-AR=ar
-V=@
+CFLAGS = $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC -o $@
+CC = gcc
+OCC = $(CC) -c
+LINKOPTS = -L. -lmds
+AR = ar
+V = @
 
-LIBOBJS = vector/vector.o
+LIBOBJS = vector/vector.o llist/llist.o
 
 .PHONY : all static dynamic test
 
@@ -50,10 +51,10 @@ libmds.a : $(LIBOBJS)
 
 ###############################################################################
 
-test : tests/vector
+test : tests/vector tests/llist
 
-tests/vector : tests/vector.c libmds.a
-	$V $(CC) $(CFLAGS) $^
+tests/% : tests/%.c
+	$V $(CC) $(CFLAGS) $^ $(LINKOPTS)
 	$V printf "Compiling and linking \033[1m$@\033[0m...\n"
 
 clean : FORCE

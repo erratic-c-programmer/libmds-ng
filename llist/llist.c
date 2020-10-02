@@ -76,6 +76,37 @@ enum status llist_pushback(struct llist *in, const void *val)
 	return OK;
 }
 
+enum status llist_addnode(struct llist *in, struct llist_node *nod,
+		const void *val)
+{
+	struct llist_node *new;
+	NULLCHK(in);
+	NULLCHK(nod);
+	NULLCHK(val);
+
+	new = malloc(sizeof(struct llist_node *));
+
+	if (new == NULL)
+		return ALLOC_FAIL;
+
+	new->data = malloc(in->dsize);
+
+	if (new->data == NULL)
+		return ALLOC_FAIL;
+
+	memcpy(new->data, val, in->dsize);
+
+	new->prev = nod->prev;
+	new->next = nod;
+
+	nod->prev = new;
+	nod->prev->next = new;
+
+	in->len += 1;
+
+	return OK;
+}
+
 enum status llist_pushfront(struct llist *in, const void *val)
 {
 	struct llist_node *new;
