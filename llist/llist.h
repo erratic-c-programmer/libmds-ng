@@ -145,7 +145,7 @@ enum status llist_deinit(struct llist *in);
  *	val - pointer to value to push
  */
 enum status llist_addnode(struct llist *in, struct llist_node *nod,
-		const void *val);
+						  const void *val);
 
 /*
  * Function: vector_insert
@@ -164,7 +164,7 @@ enum status llist_addnode(struct llist *in, struct llist_node *nod,
  * idx must not be greater than len.
  */
 enum status vector_insert(struct vector *in, const size_t idx,
-		const void *val);
+						  const void *val);
 
 /*
  * Function: vector_pushfront

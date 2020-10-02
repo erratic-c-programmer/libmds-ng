@@ -176,4 +176,4 @@ enum status vector_popfront(struct vector *in);
  *  <status>
  */
 enum status vector_modify(struct vector *in, const size_t idx,
-		const void *val);
+						  const void *val);
