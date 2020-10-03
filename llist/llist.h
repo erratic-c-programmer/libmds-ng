@@ -120,8 +120,8 @@ struct llist {
  *	idx - position to get
  *
  * Returns:
- *	The pointer to the node at position idx. If there
- *	is no such node, or the list is invalid, returns NULL.
+ *	The node at position idx. If there is no such node, or
+ *	the list is invalid, returns NULL.
  */
 struct llist_node *llist_getnode(struct llist *in, const size_t idx);
 

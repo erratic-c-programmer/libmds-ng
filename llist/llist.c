@@ -102,8 +102,8 @@ enum status llist_addnode(struct llist *in, struct llist_node *nod,
 	new->prev = nod->prev;
 	new->next = nod;
 
-	nod->prev = new;
 	nod->prev->next = new;
+	nod->prev = new;
 
 	in->len += 1;
 
