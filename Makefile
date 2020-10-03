@@ -53,8 +53,8 @@ libmds.a : $(LIBOBJS)
 
 test : tests/vector tests/llist
 
-tests/% : tests/%.c
-	$V $(CC) $(CFLAGS) $^ $(LINKOPTS)
+tests/% : tests/%.c libmds.a
+	$V $(CC) $(CFLAGS) $< $(LINKOPTS)
 	$V printf "Compiling and linking \033[1m$@\033[0m...\n"
 
 clean : FORCE
