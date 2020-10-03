@@ -17,11 +17,37 @@
  * Warning:
  *  Directly passing the head of the linked list will result in
  *  corruption!
+ *
+ * See also:
+ *  <TRAVERSE_LLIST_BACK>
  */
 #define TRAVERSE_LLIST(headptr, actions) \
 	while (headptr != NULL) { \
 		actions; \
 		headptr = headptr->next; \
+	}
+
+/*
+ * Macro: TRAVERSE_LLIST_BACK
+ * traverse a linked list backwards and perform operations on it
+ *
+ * Parameters:
+ *  tailptr - _COPY OF_ tail of list to be traversed
+ *  actions - actions to perform on each traversal.
+ *	          There may be multiple actions; in that case
+ *	          separate them with a semicolon
+ *
+ * Warning:
+ *  Directly passing the tail of the linked list will result in
+ *  corruption!
+ *
+ * See also:
+ *  <TRAVERSE_LLIST>
+ */
+#define TRAVERSE_LLIST_BACK(tailptr, actions) \
+	while (tailptr != NULL) { \
+		actions; \
+		tailptr = tailptr->prev; \
 	}
 
 /*
