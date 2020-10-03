@@ -177,14 +177,21 @@ enum status llist_delnode(struct llist *in, struct llist_node *nod)
 
 enum status llist_popfront(struct llist *in)
 {
+	struct llist_node *oldnode;
+
 	NULLCHK(in);
 
 	if (in->len == 0)
 		return OOB;
 
-	in->head->next->prev = NULL;
-	free(in->head->data);
-	free(in->head);
+	oldnode = in->head;
+	in->head = in->head->next;
+
+	if (in->len != 1)
+		oldnode->next->prev = NULL;
+
+	free(oldnode->data);
+	free(oldnode);
 
 	in->len -= 1;
 
