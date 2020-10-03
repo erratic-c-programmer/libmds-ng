@@ -11,7 +11,7 @@ struct llist_node *llist_getnode(struct llist *in, const size_t idx)
 
 	i = 0;
 	p = in->head;
-	TRAVERSE_LLIST(p, i++; if (i == idx) return p;);
+	TRAVERSE_LLIST(p, if (i++ == idx) return p;);
 
 	return NULL;
 }
