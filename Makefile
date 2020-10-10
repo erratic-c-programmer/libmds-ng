@@ -29,7 +29,7 @@ OPTIM = -O3 -march=native -mtune=native
 CFLAGS = $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC -o $@
 CC = gcc
 OCC = $(CC) -c
-LINKOPTS = -L. -lmds
+LINKOPTS = -L. -lmds -Wl,-rpath=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 AR = ar
 V = @
 
@@ -59,7 +59,7 @@ libmds.a : $(LIBOBJS)
 
 test : tests/vector tests/llist
 
-tests/% : tests/%.c libmds.a
+tests/% : tests/%.c
 	$V $(CC) $(CFLAGS) $< $(LINKOPTS)
 	$V printf "Compiling and linking \033[1m$@\033[0m...\n"
 
