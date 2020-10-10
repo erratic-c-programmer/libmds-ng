@@ -11,7 +11,7 @@ int main(void)
 	vector_pushback(&v, &(int) { 2 });
 	vector_pushfront(&v, &(int) { 1 });
 	vector_pushfront(&v, &(int) { 9 });
-	vector_insert(&v, 2, &(int) { 3 });
+	vector_insert(&v, 3, &(int) { 3 });
 	vector_pushback(&v, &(int) { 4 });
 	vector_insert(&v, 2, &(int) { 3 });
 	vector_delete(&v, 2);

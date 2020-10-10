@@ -29,7 +29,7 @@ OPTIM = -O3 -march=native -mtune=native
 CFLAGS = $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC -o $@
 CC = gcc
 OCC = $(CC) -c
-LINKOPTS = -L. -lmds -Wl,-rpath=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+LINKOPTS = -L. -lmds -Wl,-rpath=$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 AR = ar
 V = @
 

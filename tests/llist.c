@@ -23,8 +23,8 @@ int main(void)
 	llist_delnode(&l, llist_getnode(&l, 0));
 	llist_popback(&l);
 	llist_addnode(&l, llist_getnode(&l, 1), &(int){1});
-	llist_popback(&l);
-	llist_popback(&l);
+	llist_popfront(&l);
+	llist_popfront(&l);
 
 	p = l.head;
 	TRAVERSE_LLIST(p, printf("Value at index %lu: %d\n", i, *(int *) p->data); i++;);
