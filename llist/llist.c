@@ -144,14 +144,22 @@ enum status llist_pushfront(struct llist *in, const void *val)
 
 enum status llist_popback(struct llist *in)
 {
+	struct llist_node *old;
+
 	NULLCHK(in);
 
 	if (in->len == 0)
 		return OOB;
 
-	free(in->tail->data);
-	in->tail->prev->next = NULL;
-	free(in->tail);
+	old = in->tail;
+
+	if (in->tail != in->head) {
+		in->tail->prev->next = NULL;
+		in->tail = in->tail->prev;
+	}
+
+	free(old->data);
+	free(old);
 
 	in->len -= 1;
 
