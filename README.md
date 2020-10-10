@@ -1,25 +1,31 @@
-# libmds
-Library for misc. data structures
-I'll rename it to libmds when it's ready
+# libmds-ng
+Library for misc. data structures, completely rewritten, as the old
+version was full of bugs and had no proper return statuses, etc. I might
+rename it to libmds when it's ready.
 
 ## Features:
 - Written in pure C
 - Has data structures:
 	- vector
 	- llist
-	- string
-- Allocates lots of stuff on heap, so is 2x slower than C++ STL :-(
-- But is quite a lot more memory-efficient!
+	- string [NOT YET]
+- Allocates lots of stuff on heap, so may be slightly slower.
+- Quite memory-efficient (I think?)
 
-## Compiling
+## Building
 ### Prerequisites:
-- gcc/clang
+- gcc/clang/tcc/whatever C99 compiler
 - GNU make
 
 To build static and dynamic libraries with tests:
 ```linux
 $ make
 ```
+
+## Documentation generation:
+Go to the subdirectory docs and create the directory `html`,
+and run `naturaldocs2 .` (Of course, this requires that you have
+[naturaldocs2](https://www.naturaldocs.org/) installed.
 
 # Warranty (or lack of it)
 No warranties, either express or implied, are hereby given. All
