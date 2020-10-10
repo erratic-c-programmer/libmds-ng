@@ -29,9 +29,13 @@ OPTIM = -O3 -march=native -mtune=native
 CFLAGS = $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC -o $@
 CC = gcc
 OCC = $(CC) -c
-LINKOPTS = -L. -lmds -Wl,-rpath=$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+LINKOPTS = -L. -lmds
 AR = ar
 V = @
+
+ifneq ($(NORPATH), 1)
+	LINKOPTS += -Wl,-rpath=$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+endif
 
 LIBOBJS = vector/vector.o llist/llist.o
 

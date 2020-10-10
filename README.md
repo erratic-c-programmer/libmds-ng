@@ -22,6 +22,13 @@ To build static and dynamic libraries with tests:
 $ make
 ```
 
+This links the tests against the shared library libmds.so, with a
+hard-coded rpath. If you don't want the rpath to be set, then define
+the macro NORPATH=1:
+```linux
+$ make NORPATH=1
+```
+
 ## Documentation generation:
 Go to the subdirectory docs and create the directory `html`,
 and run `naturaldocs2 .` (Of course, this requires that you have
