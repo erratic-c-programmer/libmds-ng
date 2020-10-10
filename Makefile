@@ -37,9 +37,15 @@ LIBOBJS = vector/vector.o llist/llist.o
 
 .PHONY : all static dynamic test
 
-all : static test
+all : static dynamic test
 
 static : libmds.a
+
+dynamic : libmds.so
+
+libmds.so : $(LIBOBJS)
+	$V printf "Creating dynamic library \033[1m$@\033[0m...\n"
+	$V $(CC) $(CFLAGS) -shared $^
 
 libmds.a : $(LIBOBJS)
 	$V printf "Creating static library \033[1m$@\033[0m...\n"
