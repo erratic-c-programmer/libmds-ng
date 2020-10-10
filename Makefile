@@ -61,6 +61,12 @@ libmds.a : $(LIBOBJS)
 
 ###############################################################################
 
+docs : FORCE
+	$V mkdir -p docs/html
+	$V naturaldocs2 docs
+
+###############################################################################
+
 test : tests/vector tests/llist
 
 tests/% : tests/%.c

@@ -30,8 +30,7 @@ $ make NORPATH=1
 ```
 
 ## Documentation generation:
-Go to the subdirectory docs and create the directory `html`,
-and run `naturaldocs2 .` (Of course, this requires that you have
+Run `make docs`. (This requires that you have
 [naturaldocs2](https://www.naturaldocs.org/) installed)
 
 # Warranty

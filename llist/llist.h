@@ -82,7 +82,11 @@ struct llist_node {
  * Supports pushback, pushfront, random insertion,
  * and the equivalant for popping. This struct should *only* be operated on by
  * the llist_* functions! Do not attempt to manually modify any of the members
- * manually; doing so will result in disastrous consequences.
+ * manually; doing so will result in disastrous consequences. Except for the data
+ * in nodes; you can modify them like this:
+ * === Code
+ * memcpy(node->data, val, in->dsize);
+ * ===
  */
 struct llist {
 	/*
