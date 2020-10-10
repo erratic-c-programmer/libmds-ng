@@ -6,9 +6,9 @@ rename it to libmds when it's ready.
 ## Features:
 - Written in pure C
 - Has data structures:
-	- vector
-	- llist
-	- string [NOT YET]
+	- [x] vector
+	- [x] llist
+	- [ ] string
 - Allocates lots of stuff on heap, so may be slightly slower.
 - Quite memory-efficient (I think?)
 
