@@ -27,7 +27,7 @@ Go to the subdirectory docs and create the directory `html`,
 and run `naturaldocs2 .` (Of course, this requires that you have
 [naturaldocs2](https://www.naturaldocs.org/) installed)
 
-# Warranty (or lack of it)
+# Warranty
 No warranties, either express or implied, are hereby given. All
 software is supplied as is, without guarantee.	The user assumes all
 responsibility for damages resulting from the use of these features,
