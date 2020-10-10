@@ -1,6 +1,6 @@
 #include "llist.h"
 
-/* PUBLIC UTILITY FUNTIONS */
+/* PUBLIC UTILITY FUNCTIONS */
 struct llist_node *llist_getnode(struct llist *in, const size_t idx)
 {
 	size_t i;
@@ -167,6 +167,11 @@ enum status llist_delnode(struct llist *in, struct llist_node *nod)
 		nod->prev->next = nod->next;
 	if (nod != in->tail)
 		nod->next->prev = nod->prev;
+	if (nod == in->head)
+		in->head = nod->next;
+	if (nod == in->tail)
+		in->tail = nod->prev;
+
 	free(nod->data);
 	free(nod);
 
@@ -177,23 +182,12 @@ enum status llist_delnode(struct llist *in, struct llist_node *nod)
 
 enum status llist_popfront(struct llist *in)
 {
-	struct llist_node *oldnode;
-
 	NULLCHK(in);
 
 	if (in->len == 0)
 		return OOB;
 
-	oldnode = in->head;
-	in->head = in->head->next;
-
-	if (in->len != 1)
-		oldnode->next->prev = NULL;
-
-	free(oldnode->data);
-	free(oldnode);
-
-	in->len -= 1;
+	llist_delnode(in, llist_getnode(in, 0));
 
 	return OK;
 }

@@ -93,7 +93,8 @@ enum status vector_pushback(struct vector *in, const void *val);
 /*
  * Function: vector_insert
  * Inserts a value at a specified index. The value will be
- * placed _at_ the index
+ * placed _at_ the index. It pushes the rest of the elements, if any,
+ * back.
  *
  * Parameters:
  *  in - vector to operate on

@@ -5,23 +5,24 @@ int main(void)
 {
 	struct llist_node *p;
 	size_t i = 0;
+	struct llist l;
 
-	struct llist v;
-	if (llist_init(&v, sizeof(int)) == ALLOC_FAIL) {
+	if (llist_init(&l, sizeof(int)) == ALLOC_FAIL) {
 		printf("ERROR! Out of memory.\n");
 		exit(1);
 	}
-	llist_pushback(&v, &(int) { 2 });
-	llist_pushfront(&v, &(int) { 1 });
-	llist_pushfront(&v, &(int) { 9 });
-	llist_addnode(&v, llist_getnode(&v, 2), &(int) { 3 });
-	llist_pushback(&v, &(int) { 4 });
-	llist_addnode(&v, llist_getnode(&v, 2), &(int) { 3 });
-	llist_delnode(&v, llist_getnode(&v, 2));
-	llist_popfront(&v);
 
-	p = v.head;
-	TRAVERSE_LLIST(p, printf("Value at index %lu: %d\n", i, *(int *) p); i++;);
+	llist_pushback(&l, &(int){3});
+	llist_pushback(&l, &(int){8});
+	llist_pushfront(&l, &(int){1});
+	llist_pushfront(&l, &(int){9});
+	llist_addnode(&l, llist_getnode(&l, 2), &(int){2});
+	llist_popfront(&l);
+	llist_pushfront(&l, &(int){7});
+	//llist_delnode(&l, llist_getnode(&l, 0));
 
-	llist_deinit(&v);
+	p = l.head;
+	TRAVERSE_LLIST(p, printf("Value at index %lu: %d\n", i, *(int *) p->data); i++;);
+
+	llist_deinit(&l);
 }

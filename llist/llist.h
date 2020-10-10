@@ -157,7 +157,7 @@ enum status llist_deinit(struct llist *in);
 
 /*
  * Function: llist_addnode
- * Adds a node right before nod
+ * Adds a node _right before_ nod
  *
  * Parameters:
  *	in - list to operate on

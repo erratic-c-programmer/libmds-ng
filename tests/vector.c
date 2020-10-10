@@ -16,6 +16,7 @@ int main(void)
 	vector_insert(&v, 2, &(int) { 3 });
 	vector_delete(&v, 2);
 	vector_popfront(&v);
+	vector_popback(&v);
 
 	for (size_t i = 0; i < v.len; i++)
 		printf("Value at index %lu: %d\n", i, *(int *) v.data[i]);
