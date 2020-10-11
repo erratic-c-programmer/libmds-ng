@@ -11,10 +11,10 @@
  * Struct: vector
  * A dynamic vector.
  * Supports pushback, pushfront, random insertion,
- * and the equivalant for popping. This struct should *only* be operated on by
- * the vector_* functions! Do not attempt to manually modify any of the members
- * manually; doing so will result in disastrous consequences. Except for the data
- * array; you can modify it like this:
+ * and the equivalants of those for popping. This struct should *only*
+ * be operated on by the vector_* functions! Do not attempt to manually
+ * modify any of the members manually; doing so will result in disastrous
+ * consequences. Except for the data array; you can modify it like this:
  *
  * === Code
  * memcpy(in->data[idx], val, in->dsize);
@@ -25,7 +25,7 @@
 struct vector {
 	/*
 	 * Property: len
-	 * Holds length of the vector.
+	 * Length of the vector.
 	 * Trying to access elements after this is
 	 * undefined behaviour.
 	 */
@@ -76,7 +76,7 @@ enum status vector_init(struct vector *in, const size_t dsize);
  *  <status>
  *
  * Note:
- *  The list must have been initialised!
+ *  The vector must have been initialised!
  */
 enum status vector_deinit(struct vector *in);
 
