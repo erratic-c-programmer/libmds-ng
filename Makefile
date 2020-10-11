@@ -79,7 +79,7 @@ tests/% : tests/%.c
 
 clean : FORCE
 	rm -f */*.o
-	(cd tests/; rm -f `grep --colour=never -r -I -L .`)
+	(cd tests/; rm -f $$(grep --colour=never -rIL .))
 
 cleanproper : clean FORCE
 	rm -f *.a *.so
