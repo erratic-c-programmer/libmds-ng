@@ -37,7 +37,7 @@ ifneq ($(NORPATH), 1)
 	LINKOPTS += -Wl,-rpath=$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 endif
 
-LIBOBJS = vector/vector.o llist/llist.o
+LIBOBJS = vector/vector.o llist/llist.o string/string.o
 
 .PHONY : all static dynamic test
 
@@ -67,7 +67,7 @@ docs : FORCE
 
 ###############################################################################
 
-test : tests/vector tests/llist
+test : tests/vector tests/llist tests/string
 
 tests/% : tests/%.c
 	$V $(CC) $(CFLAGS) $< $(LINKOPTS)
