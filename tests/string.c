@@ -7,7 +7,8 @@ int main(void)
 
 	string_init(&s);
 
-	string_append(&s, "Hello, world!");
+	string_append(&s, "Held!");
+	string_insert(&s, 2, "llo, wor");
 
 	printf("%s\n", s.str);
 
