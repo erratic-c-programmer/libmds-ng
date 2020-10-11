@@ -7,8 +7,10 @@ int main(void)
 
 	string_init(&s);
 
-	string_append(&s, "Held!");
+	string_append(&s, "Held");
 	string_insert(&s, 2, "llo, wor");
+	string_grow(&s, 1);
+	s.str[s.len - 1] = '!';
 
 	printf("%s\n", s.str);
 
