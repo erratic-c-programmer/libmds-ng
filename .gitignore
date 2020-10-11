@@ -5,12 +5,9 @@ libmds.a
 vgcore*
 tags
 
-tests/hello
-tests/jumble
+tests/string
 tests/llist
-tests/llist_huge
 tests/vector
-tests/vector_huge
 
 docs/html
 docs/Working\ Data
