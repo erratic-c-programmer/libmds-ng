@@ -80,3 +80,19 @@ enum status string_grow(struct string *in, const size_t add);
  *  str must be NULL-terminated.
  */
 enum status string_append(struct string *in, const char *str);
+
+/* Function: string_insert
+ * Inserts a C char array in a string _at_ the specified index.
+ * All other characters, if any, will be pushed back.
+ * Parameters:
+ *  in - string to operate on
+ *  idx - index to insert at
+ *  str - char array to insert
+ *
+ * Returns:
+ *  <status>
+ *
+ * Note:
+ *  str must be NULL-terminated.
+ */
+enum status string_insert(struct string *in, const size_t idx, const char *str);

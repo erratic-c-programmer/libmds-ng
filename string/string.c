@@ -30,7 +30,7 @@ enum status string_grow(struct string *in, const size_t add)
 	if (t == NULL)
 		return ALLOC_FAIL;
 
-	memset(t + in->len, '\0', add * sizeof(char));
+	memset(t + in->len, '\0', (add + 1) * sizeof(char));
 	in->str = t;
 	in->len += add;
 
@@ -40,10 +40,30 @@ enum status string_grow(struct string *in, const size_t add)
 enum status string_append(struct string *in, const char *str)
 {
 	NULLCHK(in);
+	NULLCHK(str);
 
 	RETIFNOK(string_grow(in, strlen(str)));
 
 	strcat(in->str, str);
+
+	return OK;
+}
+
+enum status string_insert(struct string *in, const size_t idx, const char *str)
+{
+	size_t oldlen;
+	size_t len;
+
+	NULLCHK(in);
+	NULLCHK(str);
+
+	len = strlen(str);
+	oldlen = in->len;
+
+	RETIFNOK(string_grow(in, len));
+	memmove(in->str + idx + len, in->str + idx,
+			(oldlen - idx) * sizeof(char));
+	memcpy(in->str + idx, str, len * sizeof(char));
 
 	return OK;
 }
