@@ -8,7 +8,7 @@ rename it to libmds when it's ready.
 - Has data structures:
 	- [x] vector
 	- [x] llist
-	- [ ] string
+	- [x] string
 - Allocates lots of stuff on heap, so may be slightly slower.
 - Quite memory-efficient (I think?)
 
