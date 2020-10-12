@@ -63,7 +63,8 @@ enum status string_deinit(struct string *in);
  *  <status>
  *
  * Note:
- *  The new space will be initialised to NULL.
+ *  The new space will be uninitialised, save for the final
+ *  NULL byte.
  */
 enum status string_grow(struct string *in, const size_t add);
 

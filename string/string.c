@@ -6,7 +6,7 @@ enum status string_init(struct string *in)
 	NULLCHK(in);
 
 	in->len = 0;
-	in->str = NULL;
+	in->str = calloc(1, sizeof(char));
 	return OK;
 }
 
@@ -30,9 +30,9 @@ enum status string_grow(struct string *in, const size_t add)
 	if (t == NULL)
 		return ALLOC_FAIL;
 
-	memset(t + in->len, '\0', (add + 1) * sizeof(char));
 	in->str = t;
 	in->len += add;
+	in->str[in->len] = '\0';
 
 	return OK;
 }
