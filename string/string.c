@@ -62,8 +62,21 @@ enum status string_insert(struct string *in, const size_t idx, const char *str)
 
 	RETIFNOK(string_grow(in, len));
 	memmove(in->str + idx + len, in->str + idx,
-			(oldlen - idx) * sizeof(char));
+			(oldlen - idx + 1 /* the NULL byte */) * sizeof(char));
 	memcpy(in->str + idx, str, len * sizeof(char));
+
+	return OK;
+}
+
+enum status string_delete(struct string *in, const size_t start, const size_t end)
+{
+	NULLCHK(in);
+	if (end >= in->len)
+		return OOB;
+
+	memmove(in->str + start, in->str + end + 1, (end - start + 1) * sizeof(char));
+	in->len -= (end - start + 1);
+	in->str[in->len] = '\0';
 
 	return OK;
 }

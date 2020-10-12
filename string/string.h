@@ -97,3 +97,15 @@ enum status string_append(struct string *in, const char *str);
  *  str must be NULL-terminated.
  */
 enum status string_insert(struct string *in, const size_t idx, const char *str);
+
+/* Function: string_delete
+ * Deletes characters from start to end inclusively.
+ * Parameters:
+ *  in - string to operate on
+ *  start - index to start deleting from
+ *  end - index to stop deleting at
+ *
+ * Returns:
+ *  <status>
+ */
+enum status string_delete(struct string *in, const size_t start, const size_t end);
