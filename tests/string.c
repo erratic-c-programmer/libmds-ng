@@ -11,6 +11,8 @@ int main(void)
 	string_insert(&s, 2, "llo, wor");
 	string_grow(&s, 1);
 	s.str[s.len - 1] = '!';
+	string_insert(&s, 7, "MOUSE ");
+	string_delete(&s, 7, 12);
 
 	printf("%s\n", s.str);
 
