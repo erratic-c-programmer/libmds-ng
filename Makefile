@@ -71,7 +71,7 @@ docs : FORCE
 
 ###############################################################################
 
-test : tests/vector tests/llist tests/string
+test : tests/vector tests/llist tests/string tests/vector_huge tests/llist_huge
 
 tests/% : tests/%.c
 	$V $(CC) $(CFLAGS) $< $(LINKOPTS)
