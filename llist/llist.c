@@ -60,8 +60,10 @@ enum status llist_pushback(struct llist *in, const void *val)
 
 	new->data = malloc(in->dsize);
 
-	if (new->data == NULL)
+	if (new->data == NULL) {
+		free(new);
 		return ALLOC_FAIL;
+	}
 
 	memcpy(new->data, val, in->dsize);
 
@@ -89,13 +91,17 @@ enum status llist_addnode(struct llist *in, struct llist_node *nod,
 
 	new = malloc(sizeof(struct llist_node));
 
-	if (new == NULL)
+	if (new == NULL) {
+		free(new);
 		return ALLOC_FAIL;
+	}
 
 	new->data = malloc(in->dsize);
 
-	if (new->data == NULL)
+	if (new->data == NULL) {
+		free(new);
 		return ALLOC_FAIL;
+	}
 
 	memcpy(new->data, val, in->dsize);
 
@@ -118,13 +124,17 @@ enum status llist_pushfront(struct llist *in, const void *val)
 
 	new = malloc(sizeof(struct llist_node));
 
-	if (new == NULL)
+	if (new == NULL) {
+		free(new);
 		return ALLOC_FAIL;
+	}
 
 	new->data = malloc(in->dsize);
 
-	if (new->data == NULL)
+	if (new->data == NULL) {
+		free(new);
 		return ALLOC_FAIL;
+	}
 
 	memcpy(new->data, val, in->dsize);
 
