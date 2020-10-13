@@ -64,9 +64,8 @@ enum status vector_deinit(struct vector *in)
 	NULLCHK(in);
 	NULLCHK(in->data);
 
-	for (size_t i = 0; i < in->cap; i++) {
+	for (size_t i = 0; i < in->cap; i++)
 		free(in->data[i]);
-	}
 	free(in->data);
 	return OK;
 }
