@@ -41,13 +41,9 @@ ifeq ($(LEFENCE), 1)
 	LINKOPTS += -lefence
 endif
 
-ifeq ($(NODYNAMIC), 1)
-	LIBDEP = libmds.a
-endif
-
 LIBOBJS = vector/vector.o llist/llist.o string/string.o
 
-.PHONY : all static dynamic test wtf
+.PHONY : all static dynamic test
 
 all : static dynamic test
 
@@ -56,16 +52,8 @@ static : libmds.a
 dynamic : libmds.so
 
 libmds.so : $(LIBOBJS)
-ifneq ($(NODYNAMIC),1)
 	$V printf "Creating dynamic library \033[1m$@\033[0m...\n"
 	$V $(CC) $(CFLAGS) -shared $^
-else
-ifeq ($(NOSTATIC), 1)
-	$V echo "...?"
-	$V echo "You don't want to build static or dynamic libs?"
-	$V exit 1
-endif
-endif
 
 libmds.a : $(LIBOBJS)
 	$V printf "Creating static library \033[1m$@\033[0m...\n"
@@ -85,7 +73,7 @@ docs : FORCE
 
 test : tests/vector tests/llist tests/string tests/vector_huge tests/llist_huge
 
-tests/% : tests/%.c $(LIBDEP)
+tests/% : tests/%.c
 	$V $(CC) $(CFLAGS) $< $(LINKOPTS)
 	$V printf "Compiling and linking \033[1m$@\033[0m...\n"
 
@@ -95,8 +83,6 @@ clean : FORCE
 
 cleanproper : clean FORCE
 	rm -f *.a *.so
-
-###############################################################################
 
 FORCE :
 
