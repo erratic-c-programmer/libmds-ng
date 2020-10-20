@@ -1,3 +1,6 @@
+#ifndef INC_STATUS_H
+
+#define INC_STATUS_H
 /*
  * Enum: status
  * Enumerate the return values of functions
@@ -17,3 +20,5 @@ enum status {
 /* Related error-checking macros */
 #define RETIFNOK(val) if (val != OK) return val;
 #define NULLCHK(in) if (in == NULL) return NULLPTR;
+
+#endif
