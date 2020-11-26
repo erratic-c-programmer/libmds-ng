@@ -1,4 +1,4 @@
-#include "string.h"
+#include "dstring.h"
 
 /* INIT/DEINIT */
 enum status string_init(struct string *in)

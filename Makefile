@@ -41,7 +41,7 @@ ifeq ($(LEFENCE), 1)
 	LINKOPTS += -lefence
 endif
 
-LIBOBJS = vector/vector.o llist/llist.o string/string.o
+LIBOBJS = vector/vector.o llist/llist.o dstring/dstring.o
 
 .PHONY : all static dynamic test
 
@@ -71,7 +71,7 @@ docs : FORCE
 
 ###############################################################################
 
-test : tests/vector tests/llist tests/string tests/vector_huge tests/llist_huge
+test : tests/vector tests/llist tests/dstring tests/vector_huge tests/llist_huge
 
 tests/% : tests/%.c
 	$V $(CC) $(CFLAGS) $< $(LINKOPTS)
