@@ -1,6 +1,5 @@
 HEADERDIR = include
 
-WARNINGS += -Wpedantic
 WARNINGS += -Wall
 WARNINGS += -Wextra
 WARNINGS += -Waggregate-return

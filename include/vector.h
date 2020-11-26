@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../status.h"
+#include <status.h>
 
 #define VEC_INIT_SZ 4
 #define VEC_INCR_OP(osz) (osz*2)

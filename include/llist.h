@@ -4,7 +4,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../status.h"
+
+#include <status.h>
 
 /*
  * Macro: TRAVERSE_LLIST

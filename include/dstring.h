@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../status.h"
+#include <status.h>
 
 /* Struct: string
  * A dynamic string.

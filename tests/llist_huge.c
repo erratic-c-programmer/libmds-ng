@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../llist/llist.h"
+#include <llist.h>
 
 
 int main(void)
