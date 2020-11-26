@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../dstring/dstring.h"
+#include <dstring.h>
 
 int main(void)
 {

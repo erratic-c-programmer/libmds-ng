@@ -1,3 +1,5 @@
+HEADERDIR = include
+
 WARNINGS += -Wpedantic
 WARNINGS += -Wall
 WARNINGS += -Wextra
@@ -24,9 +26,10 @@ WARNINGS += -Wunused-parameter
 WARNINGS += -Wwrite-strings
 WARNINGS += -Werror
 
+INCLUDEPATH = -I$(HEADERDIR)
 DEBUG = -g
 OPTIM = -O3 -march=native -mtune=native
-CFLAGS = $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC -o $@
+CFLAGS = $(INCLUDEPATH) $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC -o $@
 CC = gcc
 OCC = $(CC) -c
 LINKOPTS = -L. -lmds
