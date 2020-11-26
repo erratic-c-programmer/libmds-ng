@@ -137,7 +137,7 @@ struct llist_node *llist_getnode(struct llist *in, const size_t idx);
  *	dsize - size of data to be pushed into data
  *
  * Returns:
- *	<status>
+ *	<lmds_status>
  *
  * Note:
  *	Remember to call <llist_deinit> later, or there will be
@@ -146,7 +146,7 @@ struct llist_node *llist_getnode(struct llist *in, const size_t idx);
  * See also:
  *	<llist_deinit>
  */
-enum status llist_init(struct llist *in, const size_t dsize);
+enum lmds_status llist_init(struct llist *in, const size_t dsize);
 
 /* Function: llist_deinit
  * De-initialises a list
@@ -155,9 +155,9 @@ enum status llist_init(struct llist *in, const size_t dsize);
  *	in - list to operate on
  *
  * Returns:
- *	<status>
+ *	<lmds_status>
  */
-enum status llist_deinit(struct llist *in);
+enum lmds_status llist_deinit(struct llist *in);
 
 /*
  * Function: llist_addnode
@@ -167,7 +167,7 @@ enum status llist_deinit(struct llist *in);
  *	in - list to operate on
  *	val - pointer to value to push
  */
-enum status llist_addnode(struct llist *in, struct llist_node *nod,
+enum lmds_status llist_addnode(struct llist *in, struct llist_node *nod,
 						  const void *val);
 
 /*
@@ -175,26 +175,26 @@ enum status llist_addnode(struct llist *in, struct llist_node *nod,
  * Pushes a value to the back of the list.
  *
  * Returns:
- *	<status>
+ *	<lmds_status>
  *
  * Parameters:
  *	in - list to operate on
  *	val - pointer to value to push
  */
-enum status llist_pushback(struct llist *in, const void *val);
+enum lmds_status llist_pushback(struct llist *in, const void *val);
 
 /*
  * Function: llist_pushfront
  * Pushes a value to the front of the list.
  *
  * Returns:
- *	<status>
+ *	<lmds_status>
  *
  * Parameters:
  *	in - list to operate on
  *	val - pointer to value to push
  */
-enum status llist_pushfront(struct llist *in, const void *val);
+enum lmds_status llist_pushfront(struct llist *in, const void *val);
 
 /*
  * Function: llist_popback
@@ -204,9 +204,9 @@ enum status llist_pushfront(struct llist *in, const void *val);
  *	in - list to operate on
  *
  * Returns:
- *	<status>
+ *	<lmds_status>
  */
-enum status llist_popback(struct llist *in);
+enum lmds_status llist_popback(struct llist *in);
 
 /*
  * Function: llist_delnode
@@ -217,9 +217,9 @@ enum status llist_popback(struct llist *in);
  *	nod - pointer to node to delete
  *
  * Returns:
- *	<status>
+ *	<lmds_status>
  */
-enum status llist_delnode(struct llist *in, struct llist_node *nod);
+enum lmds_status llist_delnode(struct llist *in, struct llist_node *nod);
 
 /*
  * Function: llist_popfront
@@ -229,6 +229,6 @@ enum status llist_delnode(struct llist *in, struct llist_node *nod);
  *	in - list to operate on
  *
  * Returns:
- *	<status>
+ *	<lmds_status>
  */
-enum status llist_popfront(struct llist *in);
+enum lmds_status llist_popfront(struct llist *in);

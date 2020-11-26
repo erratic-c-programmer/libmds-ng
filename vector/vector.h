@@ -55,7 +55,7 @@ struct vector {
  *  dsize - size of data to be pushed into data
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  *
  * Note:
  *  Remember to call <vector_deinit> later, or there will be
@@ -64,7 +64,7 @@ struct vector {
  * See also:
  *  <vector_deinit>
  */
-enum status vector_init(struct vector *in, const size_t dsize);
+enum lmds_status vector_init(struct vector *in, const size_t dsize);
 
 /* Function: vector_deinit
  * De-initialises a vector
@@ -73,12 +73,12 @@ enum status vector_init(struct vector *in, const size_t dsize);
  *  in - vector to operate on
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  *
  * Note:
  *  The vector must have been initialised!
  */
-enum status vector_deinit(struct vector *in);
+enum lmds_status vector_deinit(struct vector *in);
 
 /*
  * Function: vector_pushback
@@ -88,7 +88,7 @@ enum status vector_deinit(struct vector *in);
  *  in - vector to operate on
  *  val - pointer to value to push
  */
-enum status vector_pushback(struct vector *in, const void *val);
+enum lmds_status vector_pushback(struct vector *in, const void *val);
 
 /*
  * Function: vector_insert
@@ -102,12 +102,12 @@ enum status vector_pushback(struct vector *in, const void *val);
  *  val - pointer to value to insert
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  *
  * Note:
  * idx must not be greater than len.
  */
-enum status vector_insert(struct vector *in, const size_t idx,
+enum lmds_status vector_insert(struct vector *in, const size_t idx,
 						  const void *val);
 
 /*
@@ -115,13 +115,13 @@ enum status vector_insert(struct vector *in, const size_t idx,
  * Pushes a value to the front of the vector.
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  *
  * Parameters:
  *  in - vector to operate on
  *  val - pointer to value to push
  */
-enum status vector_pushfront(struct vector *in, const void *val);
+enum lmds_status vector_pushfront(struct vector *in, const void *val);
 
 /*
  * Function: vector_popback
@@ -131,9 +131,9 @@ enum status vector_pushfront(struct vector *in, const void *val);
  *  in - vector to operate on
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  */
-enum status vector_popback(struct vector *in);
+enum lmds_status vector_popback(struct vector *in);
 
 /*
  * Function: vector_delete
@@ -145,12 +145,12 @@ enum status vector_popback(struct vector *in);
  *  idx - index to delete
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  *
  * Note:
  * idx must be strictly smaller than len.
  */
-enum status vector_delete(struct vector *in, const size_t idx);
+enum lmds_status vector_delete(struct vector *in, const size_t idx);
 
 /*
  * Function: vector_popfront
@@ -160,9 +160,9 @@ enum status vector_delete(struct vector *in, const size_t idx);
  *  in - vector to operate on
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  */
-enum status vector_popfront(struct vector *in);
+enum lmds_status vector_popfront(struct vector *in);
 
 /*
  * Function: vector_modify
@@ -174,7 +174,7 @@ enum status vector_popfront(struct vector *in);
  *  val - new value
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  */
-enum status vector_modify(struct vector *in, const size_t idx,
+enum lmds_status vector_modify(struct vector *in, const size_t idx,
 						  const void *val);
