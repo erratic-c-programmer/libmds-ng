@@ -1,3 +1,6 @@
+#ifndef VECTOR_H
+#define VECTOR_H
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
@@ -178,3 +181,5 @@ enum status vector_popfront(struct vector *in);
  */
 enum status vector_modify(struct vector *in, const size_t idx,
 						  const void *val);
+
+#endif /* VECTOR_H */

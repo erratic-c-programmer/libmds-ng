@@ -1,7 +1,9 @@
+#ifndef LLIST_H
+#define LLIST_H
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "../status.h"
 
 /*
@@ -232,3 +234,5 @@ enum status llist_delnode(struct llist *in, struct llist_node *nod);
  *	<status>
  */
 enum status llist_popfront(struct llist *in);
+
+#endif /* LLIST_H */

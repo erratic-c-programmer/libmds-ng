@@ -1,3 +1,6 @@
+#ifndef STRING_H
+#define STRING_H
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
@@ -109,3 +112,5 @@ enum status string_insert(struct string *in, const size_t idx, const char *str);
  *  <status>
  */
 enum status string_delete(struct string *in, const size_t start, const size_t end);
+
+#endif /* STRING_H */
