@@ -4,7 +4,7 @@
 int main(void)
 {
 	struct vector v;
-	if (vector_init(&v, sizeof(int)) == ALLOC_FAIL) {
+	if (vector_init(&v, sizeof(int)) == LMDS_ALLOC_FAIL) {
 		printf("ERROR! Out of memory.\n");
 		exit(1);
 	}

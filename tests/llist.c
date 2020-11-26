@@ -7,7 +7,7 @@ int main(void)
 	size_t i = 0;
 	struct llist l;
 
-	if (llist_init(&l, sizeof(int)) == ALLOC_FAIL) {
+	if (llist_init(&l, sizeof(int)) == LMDS_ALLOC_FAIL) {
 		printf("ERROR! Out of memory.\n");
 		exit(1);
 	}

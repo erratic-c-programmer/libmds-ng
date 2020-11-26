@@ -40,9 +40,9 @@ struct string {
  *  in - string to operate on
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  */
-enum status string_init(struct string *in);
+enum lmds_status string_init(struct string *in);
 
 /* Function: string_init
  * De-initialises a string
@@ -51,9 +51,9 @@ enum status string_init(struct string *in);
  *  in - string to operate on
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  */
-enum status string_deinit(struct string *in);
+enum lmds_status string_deinit(struct string *in);
 
 /* Function: string_grow
  * Grows a string
@@ -63,13 +63,13 @@ enum status string_deinit(struct string *in);
  *  add - how many characters to grow by
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  *
  * Note:
  *  The new space will be uninitialised, save for the final
  *  NULL byte.
  */
-enum status string_grow(struct string *in, const size_t add);
+enum lmds_status string_grow(struct string *in, const size_t add);
 
 /* Function: string_append
  * Appends a C char array to a string
@@ -78,12 +78,12 @@ enum status string_grow(struct string *in, const size_t add);
  *  str - char array to append
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  *
  * Note:
  *  str must be NULL-terminated.
  */
-enum status string_append(struct string *in, const char *str);
+enum lmds_status string_append(struct string *in, const char *str);
 
 /* Function: string_insert
  * Inserts a C char array in a string _at_ the specified index.
@@ -94,12 +94,12 @@ enum status string_append(struct string *in, const char *str);
  *  str - char array to insert
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  *
  * Note:
  *  str must be NULL-terminated.
  */
-enum status string_insert(struct string *in, const size_t idx, const char *str);
+enum lmds_status string_insert(struct string *in, const size_t idx, const char *str);
 
 /* Function: string_delete
  * Deletes characters from start to end inclusively.
@@ -109,8 +109,8 @@ enum status string_insert(struct string *in, const size_t idx, const char *str);
  *  end - index to stop deleting at
  *
  * Returns:
- *  <status>
+ *  <lmds_status>
  */
-enum status string_delete(struct string *in, const size_t start, const size_t end);
+enum lmds_status string_delete(struct string *in, const size_t start, const size_t end);
 
 #endif /* STRING_H */
