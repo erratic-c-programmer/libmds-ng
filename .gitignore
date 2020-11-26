@@ -13,3 +13,6 @@ tests/vector_huge
 
 docs/html
 docs/Working\ Data
+
+compile_commands.json
+.cache

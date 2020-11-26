@@ -1,3 +1,5 @@
+HEADERDIR = include
+
 WARNINGS += -Wpedantic
 WARNINGS += -Wall
 WARNINGS += -Wextra
@@ -24,9 +26,10 @@ WARNINGS += -Wunused-parameter
 WARNINGS += -Wwrite-strings
 WARNINGS += -Werror
 
+INCLUDEPATH = -I$(HEADERDIR)
 DEBUG = -g
 OPTIM = -O3 -march=native -mtune=native
-CFLAGS = $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC -o $@
+CFLAGS = $(INCLUDEPATH) $(WARNINGS) $(DEBUG) $(OPTIM) -std=c99 -fPIC -o $@
 CC = gcc
 OCC = $(CC) -c
 LINKOPTS = -L. -lmds
@@ -41,7 +44,7 @@ ifeq ($(LEFENCE), 1)
 	LINKOPTS += -lefence
 endif
 
-LIBOBJS = vector/vector.o llist/llist.o string/string.o
+LIBOBJS = vector/vector.o llist/llist.o dstring/dstring.o
 
 .PHONY : all static dynamic test
 
@@ -71,7 +74,7 @@ docs : FORCE
 
 ###############################################################################
 
-test : tests/vector tests/llist tests/string tests/vector_huge tests/llist_huge
+test : tests/vector tests/llist tests/dstring tests/vector_huge tests/llist_huge
 
 tests/% : tests/%.c
 	$V $(CC) $(CFLAGS) $< $(LINKOPTS)
