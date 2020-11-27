@@ -44,7 +44,7 @@ struct string {
  */
 enum lmds_status string_init(struct string *in);
 
-/* Function: string_init
+/* Function: string_deinit
  * De-initialises a string
  *
  * Parameters:
