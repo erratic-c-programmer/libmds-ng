@@ -7,6 +7,10 @@ enum lmds_status string_init(struct string *in)
 
 	in->len = 0;
 	in->str = calloc(1, sizeof(char));
+
+	if (in->str == NULL)
+		return LMDS_ALLOC_FAIL;
+
 	return LMDS_OK;
 }
 

@@ -5,7 +5,7 @@ libmds.a
 vgcore*
 tags
 
-tests/string
+tests/dstring
 tests/llist
 tests/llist_huge
 tests/vector
