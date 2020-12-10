@@ -75,12 +75,11 @@ enum lmds_status string_insert(struct string *in, const size_t idx, const char *
 enum lmds_status string_delete(struct string *in, const size_t start, const size_t end)
 {
 	NULLCHK(in);
-	if (end >= in->len)
+	if (in->len == 0 || end > in->len - 1)
 		return LMDS_OOB;
 
-	memmove(in->str + start, in->str + end + 1, (end - start + 1) * sizeof(char));
+	memmove(in->str + start, in->str + end + 1, (in->len - end) * sizeof(char)); /* Moves the NUL byte as well */
 	in->len -= (end - start + 1);
-	in->str[in->len] = '\0';
 
 	return LMDS_OK;
 }
