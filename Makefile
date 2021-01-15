@@ -75,7 +75,7 @@ docs : FORCE
 
 test : tests/vector tests/llist tests/dstring tests/vector_huge tests/llist_huge
 
-tests/% : tests/%.c
+tests/% : tests/%.c libmds.so
 	$V $(CC) $(CFLAGS) $< $(LINKOPTS)
 	$V printf "Compiling and linking \033[1m$@\033[0m...\n"
 
