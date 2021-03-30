@@ -80,11 +80,11 @@ tests/% : tests/%.c libmds.so
 	$V $(CC) $(CFLAGS) $< $(LINKOPTS)
 
 clean : FORCE
-	rm -f */*.o
-	(cd tests/; rm -f $$(grep --colour=never -rIL .))
+	$V rm -f */*.o
+	$V (cd tests/; rm -f $$(grep --colour=never -rIL .))
 
 cleanproper : clean FORCE
-	rm -f *.a *.so
+	$V rm -f *.a *.so
 
 FORCE :
 
