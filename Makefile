@@ -35,14 +35,6 @@ LINKOPTS = -L. -lmds
 AR = ar
 V = @
 
-ifneq ($(NORPATH), 1)
-	LINKOPTS += -Wl,-rpath=$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
-endif
-
-ifeq ($(LEFENCE), 1)
-	LINKOPTS += -lefence
-endif
-
 LIBOBJS = vector/vector.o llist/llist.o dstring/dstring.o
 
 .PHONY : all static dynamic test
